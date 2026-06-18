@@ -1,6 +1,6 @@
 import styles from "./Works.module.css";
+import Reveal from "./Reveal";
 
-// I progetti vivono in un elenco: aggiungerne uno = aggiungere una riga qui.
 const progetti = [
   { titolo: "Progetto Uno", descrizione: "Cosa hai fatto e per chi." },
   { titolo: "Progetto Due", descrizione: "Sostituisci con un lavoro vero." },
@@ -11,15 +11,18 @@ const progetti = [
 function Works() {
   return (
     <section id="lavori" className={styles.sezione}>
-      <p className={styles.etichetta}>Lavori selezionati</p>
+      <Reveal>
+        <p className={styles.etichetta}>Lavori selezionati</p>
+      </Reveal>
       <div className={styles.griglia}>
-        {/* .map() crea una card per ogni progetto dell'elenco.
-            "key" serve a React per distinguere gli elementi della lista. */}
         {progetti.map((p, i) => (
-          <article key={i} className={styles.card}>
-            <h3>{p.titolo}</h3>
-            <p>{p.descrizione}</p>
-          </article>
+          // delay crescente = le card appaiono una dopo l'altra (effetto "a cascata")
+          <Reveal key={i} delay={i * 0.08}>
+            <article className={styles.card}>
+              <h3>{p.titolo}</h3>
+              <p>{p.descrizione}</p>
+            </article>
+          </Reveal>
         ))}
       </div>
     </section>

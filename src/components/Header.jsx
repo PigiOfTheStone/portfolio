@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>Nome Cognome ✲</div>
+      <div className={styles.logo}>PigiOfTheStone</div>
       <nav className={styles.nav}>
         <button onClick={() => vaiA("#lavori")}>lavori</button>
         <button onClick={() => vaiA("#chi-sono")}>chi sono</button>

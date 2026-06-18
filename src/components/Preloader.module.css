@@ -1,0 +1,16 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--sfondo);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 48px;
+}
+.numero {
+  font-size: clamp(3rem, 12vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--accento);
+}
