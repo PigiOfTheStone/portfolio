@@ -12,7 +12,7 @@ function Works({ onOpenScacchi }) {
   return (
     <section id="lavori" className={styles.sezione}>
       <Reveal>
-        <p className={styles.etichetta}>Lavori selezionati</p>
+        <p className={styles.etichetta}>Projects</p>
       </Reveal>
       <div className={styles.griglia}>
         {progetti.map((p, i) => (
