@@ -1,14 +1,9 @@
 .sezione { max-width: 860px; margin: 0 auto; padding: 16vh 24px; }
-.etichetta {
-  text-transform: uppercase; letter-spacing: 0.15em;
-  font-size: 0.8rem; color: var(--tenue); margin-bottom: 28px;
-}
+.etichetta { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; color: var(--tenue); margin-bottom: 28px; }
 .griglia { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 600px) { .griglia { grid-template-columns: 1fr; } }
-.card {
-  border: 1px solid var(--bordo); border-radius: 12px; padding: 24px;
-  transition: transform 0.2s, border-color 0.2s;
-}
+.card { border: 1px solid var(--bordo); border-radius: 12px; padding: 24px; transition: transform 0.2s, border-color 0.2s; }
 .card:hover { transform: translateY(-4px); border-color: var(--accento); }
 .card h3 { font-size: 1.2rem; margin-bottom: 6px; }
 .card p { color: var(--tenue); font-size: 0.95rem; }
+.gioca { display: inline-block; margin-top: 12px; color: var(--accento); font-size: 0.85rem; font-weight: 600; }

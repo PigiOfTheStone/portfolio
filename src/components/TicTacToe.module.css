@@ -1,0 +1,52 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10, 9, 14, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modale {
+  background: var(--sfondo);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+}
+.chiudi {
+  float: right;
+  background: none; border: none;
+  color: var(--tenue); font: inherit; cursor: pointer;
+}
+.chiudi:hover { color: var(--testo); }
+.titolo { font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+.stato { color: var(--tenue); margin-bottom: 20px; font-size: 0.95rem; }
+.griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 280px;
+  margin: 0 auto 20px;
+}
+.cella {
+  aspect-ratio: 1;
+  background: #1d1b24;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  font-size: 2rem; font-weight: 700;
+  color: var(--testo); cursor: pointer;
+  transition: background 0.15s;
+}
+.cella:hover { background: #26242e; }
+.ricomincia {
+  background: var(--accento);
+  color: #14131a; border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font: inherit; font-weight: 600; cursor: pointer;
+}
