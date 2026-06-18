@@ -1,0 +1,19 @@
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  mix-blend-mode: difference; /* tiene il testo leggibile su qualsiasi sfondo */
+}
+.logo { font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+.nav { display: flex; gap: 22px; align-items: center; }
+.nav button, .nav a {
+  background: none; border: none; padding: 0;
+  color: #fff; font: inherit; font-size: 0.95rem;
+  text-decoration: none; cursor: pointer;
+  opacity: 0.8; transition: opacity 0.2s;
+}
+.nav button:hover, .nav a:hover { opacity: 1; }
