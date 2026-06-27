@@ -29,7 +29,6 @@ function Faccia({ espressione }) {
   );
 }
 
-// Lo schermo in "modalità terminale": testo HTML scritto a macchina, dentro il 3D
 function SchermoTerminale({ testo }) {
   const [mostrato, setMostrato] = useState("");
   useEffect(() => {
@@ -46,22 +45,32 @@ function SchermoTerminale({ testo }) {
 
   return (
     <Html
-      transform                                  // l'HTML vive nello spazio 3D e si inclina col monitor
-      position={[0, 0.1, Z_SCHERMO + 0.03]}
-      distanceFactor={2.4}                        // scala del testo: più alto = più piccolo
-      style={{ pointerEvents: "none", width: "150px" }}
+      transform
+      position={[0, 0.1, Z_SCHERMO + 0.03]}   // centrato sullo schermo (in transform è obbligato)
+      distanceFactor={3}
+      style={{ pointerEvents: "none" }}
     >
       <div style={{
+        width: "250px",                 // ← MANOPOLA: larghezza riquadro
+        height: "175px",                // ← MANOPOLA: altezza riquadro
+        outline: "1px solid red",       // ← TEMPORANEO: per vedere il riquadro
+        display: "flex",
+        justifyContent: "flex-start",   // testo in ALTO
+        alignItems: "flex-start",       // testo a SINISTRA
+        boxSizing: "border-box",
+        padding: "4px",
         fontFamily: "ui-monospace, Menlo, Consolas, monospace",
-        fontSize: "11px",
+        fontSize: "25px",               // ← MANOPOLA: dimensione testo
         lineHeight: 1.35,
         color: "#bfe9c8",
         textShadow: "0 0 4px rgba(120,255,170,0.5)",
+        textAlign: "left",
         whiteSpace: "pre-wrap",
         wordBreak: "break-word",
       }}>
-        <span style={{ color: "#5fae7e" }}>&gt; </span>{mostrato}
-        <span className="crt-cur">▋</span>
+        <span>
+          <span style={{ color: "#5fae7e" }}>&gt; </span>{mostrato}<span className="crt-cur">▋</span>
+        </span>
       </div>
     </Html>
   );
