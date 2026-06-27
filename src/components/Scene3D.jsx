@@ -225,7 +225,7 @@ function Dorme({ sveglia, onSvegliato }) {
   );
 }
 
-function Monitor({ puntatore, mood, message, ridendo, idle }) {
+function Monitor({ puntatore, sensore, mood, message, ridendo, idle }) {
   const gruppo = useRef();
   const [blink, setBlink] = useState(false);
   const [terminale, setTerminale] = useState(false);
@@ -277,8 +277,8 @@ function Monitor({ puntatore, mood, message, ridendo, idle }) {
   useFrame((state) => {
     const g = gruppo.current;
     if (!g) return;
-    const ry = puntatore.current.x * 0.4;
-    const rx = -puntatore.current.y * 0.25;
+    const ry = (puntatore.current.x + (sensore?.current?.x || 0)) * 0.4;
+    const rx = (-puntatore.current.y + (sensore?.current?.y || 0))* 0.25;
     g.rotation.y += (ry - g.rotation.y) * 0.05;
     g.rotation.x += (rx - g.rotation.x) * 0.05;
     if (ridendo) g.rotation.z = Math.sin(state.clock.elapsedTime * 30) * 0.06;
@@ -289,11 +289,11 @@ function Monitor({ puntatore, mood, message, ridendo, idle }) {
     <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.6}>
       <group ref={gruppo}>
         <mesh>
-          <boxGeometry args={[2.4, 1.9, 0.6]} />
+          <boxGeometry args={[2.4, 2.2, 0.6]} />
           <meshStandardMaterial color="#d6cba0" roughness={0.7} metalness={0.05} />
         </mesh>
         <mesh position={[0, 0.1, Z_SCHERMO - 0.02]}>
-          <boxGeometry args={[1.9, 1.3, 0.05]} />
+          <boxGeometry args={[2.05, 1.55, 0.05]} />
           <meshStandardMaterial color="#0a1410" emissive="#0e3a24" emissiveIntensity={0.4} roughness={0.4} />
         </mesh>
 
@@ -323,6 +323,33 @@ function Monitor({ puntatore, mood, message, ridendo, idle }) {
 export default function Scene3D() {
   const { mood, message } = useMascotte();
   const puntatore = useRef({ x: 0, y: 0 });
+  const sensore = useRef({ x: 0, y: 0});
+  const [serveTilt, setServeTilt] = useState(false);
+
+  // su mobile mostriamo il pulsante per attivare i sensori
+  useEffect(() => {
+    const tocco = "ontouchstart" in window;
+    if (tocco) setServeTilt(true);
+  }, []);
+
+  const attivaTilt = () => {
+    const DOE = window.DeviceOrientationEvent;
+    const parte = () => {
+      window.addEventListener("deviceorientation", (e) => {
+        // gamma = inclinazione sinistra/destra, beta = avanti/indietro
+        sensore.current.x = Math.max(-1, Math.min(1, (e.gamma || 0) / 35));
+        sensore.current.y = Math.max(-1, Math.min(1, ((e.beta || 0) - 45) / 35));
+      });
+      setServeTilt(false);
+    };
+    // iOS: serve chiedere il permesso
+    if (DOE && typeof DOE.requestPermission === "function") {
+      DOE.requestPermission().then((res) => { if (res === "granted") parte(); }).catch(() => {}); 
+    } else {
+      parte();
+    }
+  };
+
   const [ridendo, setRidendo] = useState(false);
   const [idle, setIdle] = useState(false);
   const ultimaAttivita = useRef(Date.now());
@@ -381,12 +408,12 @@ export default function Scene3D() {
 
   return (
     <div className={styles.sfondo}>
-      <Canvas camera={{ position: [0, 0, 6.8], fov: 45 }} dpr={[1, 2]}>
+      <Canvas camera={{ position: [0, 0, 7.4], fov: 45 }} dpr={[1, 2]}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[3, 4, 5]} intensity={1.3} />
         <directionalLight position={[-4, -2, 2]} intensity={0.3} color="#8a8794" />
         <Suspense fallback={null}>
-          <Monitor puntatore={puntatore} mood={mood} message={message} ridendo={ridendo} idle={idle} />
+          <Monitor puntatore={puntatore} sensore={sensore} mood={mood} message={message} ridendo={ridendo} idle={idle} />
        </Suspense>
       </Canvas>
       <button
@@ -401,6 +428,20 @@ export default function Scene3D() {
         aria-label="Interagisci con l'assistente"
         style={{ position: "absolute", inset: 0, background: "transparent", border: "none", cursor: "pointer", pointerEvents: "auto" }}
       />
+      {serveTilt && (
+        <button
+          onClick={attivaTilt}
+          style={{
+            position: "absolute", top: "-34px", left: "50%", transform: "translateX(-50%)",
+            whiteSpace: "nowrap", padding: "6px 12px", fontSize: "12px",
+            borderRadius: "999px", border: "1px solid var(--bordo)",
+            background: "rgba(20,19,26,0.85)", color: "var(--testo)",
+            cursor: "pointer", pointerEvents: "auto",
+          }}
+        >
+          📱 attiva movimento
+        </button>
+      )}
     </div>
   );
 }

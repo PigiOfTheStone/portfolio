@@ -18,5 +18,5 @@
 
 /* su schermi piccoli si rimpicciolisce per non invadere */
 @media (max-width: 600px) {
-  .sfondo { width: 190px; height: 190px; right: 8px; bottom: 8px; }
+  .sfondo { width: 250px; height: 250px; right: 6px; bottom: 6px; }
 }
