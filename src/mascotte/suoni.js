@@ -2,6 +2,10 @@
 let ctx = null;
 let master = null;
 let attivo = false;
+let muto = false;
+try { muto = localStorage.getItem("audioMuto") === "1"; } catch {}
+export function setMuto(v) { muto = v; try { localStorage.setItem("audioMuto", v ? "1" : "0"); } catch {} }
+export function isMuto() { return muto; }
 
 function init() {
   if (ctx) return;
@@ -21,7 +25,7 @@ export function sbloccaAudio() {
 
 // un singolo blip
 function blip(freq = 440, durata = 0.08, tipo = "square") {
-  if (!attivo || !ctx) return;
+  if (!attivo || !ctx || muto) return;
   const osc = ctx.createOscillator();
   const g = ctx.createGain();
   osc.type = tipo;

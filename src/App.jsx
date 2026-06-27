@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AudioToggle from "./components/AudioToggle";
 import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { gsap } from "gsap";
@@ -37,7 +38,8 @@ function Sito() {
         <Works onOpenScacchi={apriScacchi} />
         <About />
       </div>
-   
+
+      <AudioToggle />
       {giocoAperto && <TicTacToe onClose={chiudiTris} />}
       {scacchiAperti && <ChessGame onClose={chiudiScacchi} />}
     </ReactLenis>

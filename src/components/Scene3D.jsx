@@ -387,8 +387,20 @@ export default function Scene3D() {
         <directionalLight position={[-4, -2, 2]} intensity={0.3} color="#8a8794" />
         <Suspense fallback={null}>
           <Monitor puntatore={puntatore} mood={mood} message={message} ridendo={ridendo} idle={idle} />
-        </Suspense>
+       </Suspense>
       </Canvas>
+      <button
+        onClick={() => {
+          Suoni.sbloccaAudio();
+          if (!ridendoRef.current) {
+            setRidendo(true);
+            Suoni.risata();
+            setTimeout(() => setRidendo(false), 1800);
+          }
+        }}
+        aria-label="Interagisci con l'assistente"
+        style={{ position: "absolute", inset: 0, background: "transparent", border: "none", cursor: "pointer", pointerEvents: "auto" }}
+      />
     </div>
   );
 }
