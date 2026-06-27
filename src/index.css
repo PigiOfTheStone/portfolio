@@ -6,11 +6,17 @@
   --bordo:  #2a2832;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--sfondo); }
+
 body {
-  background: var(--sfondo);
+
   color: var(--testo);
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+.sito { position: relative; z-index: 1; }
+.crt-cur { animation: crtblink 1s steps(1) infinite; }
+@keyframes crtblink { 50% { opacity: 0; } }

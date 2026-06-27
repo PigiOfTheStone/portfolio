@@ -3,7 +3,9 @@ import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MascotteProvider, useMascotte } from "./mascotte/MascotteContext";
 import Preloader from "./components/Preloader";
+import Scene3D from "./components/Scene3D";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Works from "./components/Works";
@@ -13,23 +15,39 @@ import ChessGame from "./components/ChessGame";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+function Sito() {
+  const { say, idle } = useMascotte();
   const [loaded, setLoaded] = useState(false);
   const [giocoAperto, setGiocoAperto] = useState(false);
   const [scacchiAperti, setScacchiAperti] = useState(false);
   useLenis(() => ScrollTrigger.update());
 
+  const apriTris = () => { setGiocoAperto(true); say("sorpreso", "› avvio tris.exe…"); };
+  const chiudiTris = () => { setGiocoAperto(false); idle(); };
+  const apriScacchi = () => { setScacchiAperti(true); say("sorpreso", "› carico scacchi.exe…"); };
+  const chiudiScacchi = () => { setScacchiAperti(false); idle(); };
+
   return (
     <ReactLenis root options={{ lerp: 0.08, smoothWheel: true, syncTouch: true }}>
       <Preloader onDone={() => setLoaded(true)} />
-      <Header onSegreto={() => setGiocoAperto(true)} />
-      <Hero start={loaded} />
-      <Works onOpenScacchi={() => setScacchiAperti(true)} />
-      <About />
-      {giocoAperto && <TicTacToe onClose={() => setGiocoAperto(false)} />}
-      {scacchiAperti && <ChessGame onClose={() => setScacchiAperti(false)} />}
+      {loaded && <Scene3D />}
+      <div className="sito">
+        <Header onSegreto={apriTris} />
+        <Hero start={loaded} />
+        <Works onOpenScacchi={apriScacchi} />
+        <About />
+      </div>
+   
+      {giocoAperto && <TicTacToe onClose={chiudiTris} />}
+      {scacchiAperti && <ChessGame onClose={chiudiScacchi} />}
     </ReactLenis>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <MascotteProvider>
+      <Sito />
+    </MascotteProvider>
+  );
+}

@@ -24,7 +24,7 @@ function Preloader({ onDone }) {
         yPercent: -100,
         duration: 0.9,
         ease: "power3.inOut",
-        onStart: () => { console.log("Preloader finito"); onDone; },
+        onStart: () => { onDone(); },
       }, "+=0.2");
   }, { scope: root });
 
