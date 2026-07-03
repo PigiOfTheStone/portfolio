@@ -7,15 +7,27 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { background: var(--sfondo); }
+html {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, #1d1b28 0%, transparent 60%),
+    var(--sfondo);
+  background-attachment: fixed;
+}
 
 body {
 
   color: var(--testo);
-  font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+  font-family: aglet-mono, monospace;
+  font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, .titolo {
+  font-family: recursive-mono-linear-static, sans-serif;
+  font-weight: 600;
+}
+
 .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 .sito { position: relative; z-index: 1; }
 .crt-cur { animation: crtblink 1s steps(1) infinite; }
@@ -25,4 +37,14 @@ body {
   0% { opacity: 0; transform: translateY(0) scale(0.8); }
   30% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

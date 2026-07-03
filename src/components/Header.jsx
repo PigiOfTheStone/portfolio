@@ -10,14 +10,13 @@ function Header({ onSegreto }) {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        Nome Cognome{" "}
         <button
-          className={styles.segreto}
-          onClick={onSegreto}
-          onMouseEnter={() => say("sorpreso", "› simbolo sconosciuto… cliccami?")}
-          onMouseLeave={idle}
-          title="?"
-        >✲</button>
+          className={styles.logoBtn}
+          onClick={() => lenis?.scrollTo(0)}
+          aria-label="Torna all'inizio"
+        >
+          <img src="/logo.png" alt="Pigi.of.the.Stone" className={styles.logoImg} />
+        </button>
       </div>
       <nav className={styles.nav}>
         <button onMouseEnter={() => say("felice", "› apro la sezione lavori…")} onMouseLeave={idle} onClick={() => vaiA("#lavori")}>lavori</button>

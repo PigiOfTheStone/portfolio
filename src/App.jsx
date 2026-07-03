@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AudioToggle from "./components/AudioToggle";
 import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
@@ -27,6 +27,15 @@ function Sito() {
   const chiudiTris = () => { setGiocoAperto(false); idle(); };
   const apriScacchi = () => { setScacchiAperti(true); say("sorpreso", "› carico scacchi.exe…"); };
   const chiudiScacchi = () => { setScacchiAperti(false); idle(); };
+
+  // easter egg: premi "t" per aprire il tris segreto
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "t" || e.key === "T") setGiocoAperto(true);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <ReactLenis root options={{ lerp: 0.08, smoothWheel: true, syncTouch: true }}>

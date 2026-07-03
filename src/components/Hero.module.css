@@ -20,3 +20,16 @@
   margin-top: 20px;
   max-width: 540px;
 }
+
+.tamburo {
+  display: inline-block;
+  animation: rulla 0.25s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.fermo { animation: none; }
+
+@keyframes rulla {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
