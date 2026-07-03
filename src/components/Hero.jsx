@@ -10,6 +10,7 @@ function Hero({ start }) {
   const sottotitolo = useRef(null);
   const reveal = useRef(null);
   const [rullato, setRullato] = useState(false);
+  const griglia = useRef(null);
 
   useGSAP(() => {
     if (!start) return;
@@ -28,9 +29,37 @@ function Hero({ start }) {
       .from(sottotitolo.current, { opacity: 0, y: 20, duration: 0.7, ease: "power3.out" }, "-=0.1");
   }, { dependencies: [start], scope: root });
 
+  useGSAP(() => {
+    // parallasse: mentre scrolli via dalla hero, la griglia "resta indietro"
+    gsap.to(griglia.current, {
+      y: () => window.innerHeight * 0.45,   // ← quanto resta indietro (45% dello scroll)
+      ease: "none",
+      scrollTrigger: {
+        trigger: root.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,        // legata allo scroll, non al tempo
+      },
+    });
+    // bonus: il testo della hero sfuma leggermente mentre esce
+    gsap.to(`.${styles.contenuto}`, {
+      opacity: 0,
+      y: -60,
+      ease: "none",
+      scrollTrigger: {
+        trigger: root.current,
+        start: "top top",
+        end: "70% top",
+        scrub: true,
+      },
+    });
+  }, { scope: root });
+
   return (
     <section ref={root} className={styles.hero}>
-      <GridHero />
+      <div ref={griglia} className={styles.grigliaWrap}>
+        <GridHero />
+       </div> 
       <h1 ref={titolo} className={styles.titolo}>
         Ciao, sono un <span className={`${styles.tamburo} ${rullato ? styles.fermo : ""}`} aria-hidden="true">🥁</span><br />
         <span ref={reveal} className={styles.accento}>creative designer</span>

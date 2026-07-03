@@ -8,17 +8,57 @@ const vertexShader = `
   uniform float uRadius;
   uniform float uStrength;
   uniform float uMax;
-  attribute vec2 center;       // il centro della cella a cui appartiene il vertice
+  uniform vec2 uOnda;
+  uniform float uOndaT;
+  uniform float uTime;
+  attribute vec2 center;
   varying float vBump;
+  varying float vNoise;
+
+  // noise semplice e veloce (pseudo-random fluido)
+  float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+  float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+  }
+
   void main() {
+    // effetto mouse (sfera)
     float d = distance(center, uMouse);
-    float bump = exp(-(d * d) / (uRadius * uRadius));   // 0..1, massimo sotto il mouse
-    vBump = bump;
-    // ingrandisce il quadrato attorno al suo centro
+    float bump = pow(exp(-(d * d) / (uRadius * uRadius)), 1.8);
+
+    // effetto onda (sasso nell'acqua)
+    float bumpOnda = 0.0;
+    if (uOndaT >= 0.0) {
+      float raggioOnda = uOndaT * 2.6;
+      float dOnda = distance(center, uOnda);
+      float anello = exp(-pow((dOnda - raggioOnda) * 3.0, 2.0));
+      float smorzamento = exp(-uOndaT * 1.2);
+      bumpOnda = anello * smorzamento;
+    }
+
+    float b = max(bump, bumpOnda);
+    vBump = b;
+
+    // NOISE ORGANICO: ogni quadrato ha il suo "carattere" che evolve lentamente
+    float n = noise(center * 1.5 + uTime * 0.15);
+    vNoise = n;
+
+    // 1) respiro di dimensione: i quadrati variano leggermente di grandezza tra loro
+    float respiro = (n - 0.5) * 0.25;              // ← MANOPOLA respiro dimensione
+    // 2) tremolio di posizione: uno spostamento dolce e lento
+    vec2 tremolio = vec2(
+      noise(center * 2.0 + uTime * 0.1) - 0.5,
+      noise(center * 2.0 + 50.0 + uTime * 0.1) - 0.5
+    ) * 0.035;                                      // ← MANOPOLA tremolio
+
+    float crescita = min(uStrength * b, uMax) + respiro;
     vec3 pos = position;
-    float crescita = min(uStrength * bump, uMax);   // la crescita ha un tetto
     vec2 offset = (position.xy - center) * crescita;
-    pos.xy += offset;
+    pos.xy += offset + tremolio;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
 `;
@@ -26,14 +66,16 @@ const vertexShader = `
 const fragmentShader = `
   uniform vec3 uColor;
   varying float vBump;
+  varying float vNoise;
   void main() {
-    float a = 0.25 + vBump * 0.75;   // i quadrati sotto il mouse sono più pieni
+    float base = 0.07 + vNoise * 0.06;   // opacità a riposo, variata dal noise
+    float a = base + vBump * 0.55;
     gl_FragColor = vec4(uColor, a);
   }
 `;
 
 function Griglia() {
-  const { viewport } = useThree();
+  const { viewport, gl } = useThree();
   const target = useRef(new THREE.Vector2(999, 999));
 
   const W = viewport.width * 1.25;
@@ -75,27 +117,48 @@ function Griglia() {
 
   const uniforms = useMemo(() => ({
     uMouse: { value: new THREE.Vector2(999, 999) },
-    uRadius: { value: 0.9 },
-    uStrength: { value: 1.6 },   // quanto si ingrandiscono i quadrati sotto il mouse
+    uRadius: { value: 0.25 },
+    uStrength: { value: 2.2 },   // quanto si ingrandiscono i quadrati sotto il mouse
     uMax: { value: 0.5 },
+    uOnda: { value: new THREE.Vector2(0, 0) },
+    uOndaT: { value: -1 },   // -1 = nessuna onda in corso
     uColor: { value: new THREE.Color("#ff5c38") },
+    uTime: {value: 0},
   }), []);
 
   useEffect(() => {
     const onMove = (e) => {
-      target.current.set(
-        (e.clientX / window.innerWidth) * 2 - 1,
-        -((e.clientY / window.innerHeight) * 2 - 1)
-      );
+      const rect = gl.domElement.getBoundingClientRect();  // posizione reale del canvas
+      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      target.current.set(nx, ny);
     };
     window.addEventListener("pointermove", onMove);
     return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+  }, [gl]);
 
-  useFrame(() => {
+  useEffect(() => {
+    const onTap = (e) => {
+      const rect = gl.domElement.getBoundingClientRect();
+      const t = e.touches ? e.touches[0] : e;
+      const nx = ((t.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -(((t.clientY - rect.top) / rect.height) * 2 - 1);
+      uniforms.uOnda.value.set((nx * viewport.width) / 2, (ny * viewport.height) / 2);
+      uniforms.uOndaT.value = 0;   // fa partire l'onda
+    };
+    window.addEventListener("pointerdown", onTap);
+    return () => window.removeEventListener("pointerdown", onTap);
+  }, [gl, viewport, uniforms]);
+
+  useFrame((state) => {
+    uniforms.uTime.value = state.clock.elapsedTime;
     const px = (target.current.x * viewport.width) / 2;
     const py = (target.current.y * viewport.height) / 2;
     uniforms.uMouse.value.lerp(new THREE.Vector2(px, py), 0.1);
+    if (uniforms.uOndaT.value >= 0) {
+      uniforms.uOndaT.value += 1 / 60;              // avanza il tempo
+      if (uniforms.uOndaT.value > 3) uniforms.uOndaT.value = -1;  // dopo 3s, onda finita
+    }
   });
 
   return (

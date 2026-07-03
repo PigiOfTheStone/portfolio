@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_2" data-name="Livello 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.46 277.33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e8e6df;
+      }
+    </style>
+  </defs>
+  <g id="Livello_1-2" data-name="Livello 1">
+    <g>
+      <rect class="cls-1" x="115.27" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" x="115.27" y="170.5" width="50" height="50"/>
+      <rect class="cls-1" x="115.27" y="227.33" width="50" height="50"/>
+      <rect class="cls-1" x="174.36" y="170.5" width="50" height="50"/>
+      <rect class="cls-1" x="56.18" y="170.5" width="50" height="50"/>
+      <rect class="cls-1" x="115.27" y="56.83" width="50" height="50"/>
+      <rect class="cls-1" x="115.27" width="50" height="50"/>
+      <rect class="cls-1" x="174.36" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" x="56.69" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" x="174.11" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" x="233.46" y="113.67" width="50" height="50"/>
+      <rect class="cls-1" x="174.11" y="56.83" width="50" height="50"/>
+      <rect class="cls-1" x="56.44" y="56.83" width="50" height="50"/>
+    </g>
+  </g>
+</svg>

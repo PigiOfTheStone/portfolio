@@ -13,6 +13,7 @@ import Works from "./components/Works";
 import About from "./components/About";
 import TicTacToe from "./components/TicTacToe";
 import ChessGame from "./components/ChessGame";
+import PixelBg from "./components/PixelBg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +45,9 @@ function Sito() {
       <div className="sito">
         <Header onSegreto={apriTris} />
         <Hero start={loaded} />
-        <Works onOpenScacchi={apriScacchi} />
+        <PixelBg>
+          <Works onOpenScacchi={apriScacchi} />
+        </PixelBg>
         <About />
       </div>
 

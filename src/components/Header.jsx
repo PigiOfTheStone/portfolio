@@ -15,7 +15,9 @@ function Header({ onSegreto }) {
           onClick={() => lenis?.scrollTo(0)}
           aria-label="Torna all'inizio"
         >
-          <img src="/logo.png" alt="Pigi.of.the.Stone" className={styles.logoImg} />
+          <img src="/logo.png" alt="Pigi.of.the.Stone" className={styles.logoEsteso} />
+          <img src="/favicon-white.svg" alt="Pigi.of.the.Stone" className={styles.logoSimbolo} />
+
         </button>
       </div>
       <nav className={styles.nav}>
