@@ -1,0 +1,64 @@
+.sezione {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18vh 24px 20vh;
+}
+.etichetta {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  color: var(--tenue);
+  margin-bottom: 24px;
+}
+.titolo {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.accento { color: var(--accento); }
+.sotto {
+  color: var(--tenue);
+  margin-top: 16px;
+  max-width: 480px;
+}
+.riga {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.email {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+  color: var(--testo);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accento);
+  padding-bottom: 2px;
+}
+.email:hover { color: var(--accento); }
+.copia {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--bordo);
+  background: none;
+  color: var(--tenue);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.copia:hover { border-color: var(--accento); color: var(--testo); }
+.social {
+  display: flex;
+  gap: 24px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.social a {
+  color: var(--tenue);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.social a:hover { color: var(--accento); }

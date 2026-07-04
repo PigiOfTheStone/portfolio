@@ -23,7 +23,7 @@ function Header({ onSegreto }) {
       <nav className={styles.nav}>
         <button onMouseEnter={() => say("felice", "› apro la sezione lavori…")} onMouseLeave={idle} onClick={() => vaiA("#lavori")}>lavori</button>
         <button onMouseEnter={() => say("felice", "› chi è Nome Cognome?")} onMouseLeave={idle} onClick={() => vaiA("#chi-sono")}>chi sono</button>
-        <a onMouseEnter={() => say("felice", "› componi una nuova email…")} onMouseLeave={idle} href="mailto:tua@email.it">contatti</a>
+        <button onMouseEnter={() => say("felice", "› vado ai contatti…")} onMouseLeave={idle} onClick={() => vaiA("#contatti")}>contatti</button>      
       </nav>
     </header>
   );

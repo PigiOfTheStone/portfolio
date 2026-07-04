@@ -14,6 +14,7 @@ import About from "./components/About";
 import TicTacToe from "./components/TicTacToe";
 import ChessGame from "./components/ChessGame";
 import PixelBg from "./components/PixelBg";
+import Contact from "./components/Contact";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,6 +50,7 @@ function Sito() {
           <Works onOpenScacchi={apriScacchi} />
         </PixelBg>
         <About />
+        <Contact />
       </div>
 
       <AudioToggle />
