@@ -11,6 +11,7 @@ function Hero({ start }) {
   const reveal = useRef(null);
   const [rullato, setRullato] = useState(false);
   const griglia = useRef(null);
+  const tamburo = useRef(null);
 
   useGSAP(() => {
     if (!start) return;
@@ -24,7 +25,8 @@ function Hero({ start }) {
       // 2. suspense: il tamburo rulla da solo per un attimo
       .to({}, { duration: 1.1 })
       // 3. PAF: appare "creative designer" con uno scatto elastico
-      .to(reveal.current, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.5)", onStart: () => setRullato(true) }, "-=0.1")
+      .to(tamburo.current, { opacity: 0, scale: 0, duration: 0.25, ease: "back.in(2)" })
+      .to(reveal.current, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.5)" }, "-=0.1")
       // 4. infine il sottotitolo
       .from(sottotitolo.current, { opacity: 0, y: 20, duration: 0.7, ease: "power3.out" }, "-=0.1");
   }, { dependencies: [start], scope: root });
@@ -61,7 +63,7 @@ function Hero({ start }) {
         <GridHero />
        </div> 
       <h1 ref={titolo} className={styles.titolo}>
-        Ciao, sono un <span className={`${styles.tamburo} ${rullato ? styles.fermo : ""}`} aria-hidden="true">🥁</span><br />
+        Ciao, sono un <span ref={tamburo} className={styles.tamburo} aria-hidden="true">🥁</span><br />
         <span ref={reveal} className={styles.accento}>creative designer</span>
       </h1>
       <p ref={sottotitolo} className={styles.sottotitolo}>

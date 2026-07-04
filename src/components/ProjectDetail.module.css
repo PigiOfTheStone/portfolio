@@ -1,0 +1,100 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(10, 9, 14, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+.pannello {
+  background: var(--sfondo);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+.chiudi { float: right; background: none; border: none; color: var(--tenue); font: inherit; cursor: pointer; }
+.chiudi:hover { color: var(--testo); }
+.tipo {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--tenue);
+}
+.titolo { font-size: 2rem; margin: 4px 0 20px; }
+.video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* il player resta proporzionato su ogni schermo */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+}
+.video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.racconto { color: var(--tenue); margin-top: 20px; line-height: 1.6; }
+.ruoli { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.ruolo {
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border: 1px solid var(--bordo);
+  border-radius: 999px;
+  color: var(--tenue);
+}
+.galleria {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0d0c12;
+}
+.immagine {
+  display: block;
+  width: 100%;
+  max-height: 62vh;
+  object-fit: contain;          /* i francobolli si vedono interi, mai tagliati */
+  animation: fadein 0.3s ease;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.freccia {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--bordo);
+  background: rgba(20, 19, 26, 0.8);
+  color: var(--testo);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.freccia:hover { border-color: var(--accento); }
+.sx { left: 12px; }
+.dx { right: 12px; }
+.contatore {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 0.8rem;
+  color: var(--tenue);
+  background: rgba(20, 19, 26, 0.7);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
