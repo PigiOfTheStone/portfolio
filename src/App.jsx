@@ -15,6 +15,7 @@ import TicTacToe from "./components/TicTacToe";
 import ChessGame from "./components/ChessGame";
 import PixelBg from "./components/PixelBg";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +43,6 @@ function Sito() {
   return (
     <ReactLenis root options={{ lerp: 0.08, smoothWheel: true, syncTouch: true }}>
       <Preloader onDone={() => setLoaded(true)} />
-      {loaded && <Scene3D />}
       <div className="sito">
         <Header onSegreto={apriTris} />
         <Hero start={loaded} />
@@ -51,6 +51,7 @@ function Sito() {
         </PixelBg>
         <About />
         <Contact />
+        <Footer />
       </div>
 
       <AudioToggle />

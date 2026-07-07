@@ -126,3 +126,10 @@
   .immagine { max-height: 70vh; }  /* i francobolli sfruttano lo schermo verticale */
   .freccia { width: 38px; height: 38px; }
 }
+.mascotteBox {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #1a1822 0%, #0d0c12 100%);
+}

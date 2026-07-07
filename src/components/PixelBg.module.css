@@ -1,6 +1,7 @@
 .wrap {
   position: relative;
   overflow: hidden;
+  isolation: isolate;   /* ← contiene lo strato e i suoi sbordamenti */
 }
 
 .griglia {

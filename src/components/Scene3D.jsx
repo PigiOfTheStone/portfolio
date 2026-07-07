@@ -163,7 +163,7 @@ function FacciaLiscia({ puntatore, blink, espressione }) {
   const stile = stileOcchio(espressione, blink);
 
   return (
-    <Html transform position={[0, 0.1, Z_SCHERMO + 0.04]} distanceFactor={3} style={{ pointerEvents: "none" }}>
+    <Html transform position={[0, 0.5, Z_SCHERMO + 0.04]} distanceFactor={3} style={{ pointerEvents: "none" }}>
       <div style={{ width: "250px", height: "175px", display: "flex", justifyContent: "center", alignItems: "center", gap: "34px" }}>
         <div ref={wrapSx}><div ref={occhioSx} style={stile} /></div>
         <div ref={wrapDx}><div ref={occhioDx} style={stile} /></div>
@@ -462,7 +462,7 @@ function Monitor({ puntatore, sensore, mood, message, ridendo, arrabbiato, idle,
   );
 }
 
-export default function Scene3D() {
+export default function Scene3D({ inCornice = false }) {
   const { mood, message } = useMascotte();
   const puntatore = useRef({ x: 0, y: 0 });
   const sensore = useRef({ x: 0, y: 0});
@@ -580,7 +580,7 @@ export default function Scene3D() {
   }, []);
 
   return (
-    <div className={styles.sfondo}>
+    <div className={inCornice ? styles.inCornice : styles.sfondo}>
       <Canvas camera={{ position: [0, 0, 7.4], fov: 45 }} dpr={[1, 2]} style={{ pointerEvents: "auto", touchAction: "pan-y" }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[3, 4, 5]} intensity={1.3} />

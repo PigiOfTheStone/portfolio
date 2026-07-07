@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProjectDetail.module.css";
+import Scene3D from "./Scene3D";
 
 export default function ProjectDetail({ progetto, onClose }) {
   const [indice, setIndice] = useState(0);
@@ -24,6 +25,11 @@ export default function ProjectDetail({ progetto, onClose }) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
+          </div>
+        )}
+        {progetto.interattivo === "mascotte" && (
+          <div className={styles.mascotteBox}>
+            <Scene3D inCornice />
           </div>
         )}
 

@@ -71,6 +71,17 @@ const progetti = [
     commento: "› apro unione_cadore/ — forza ragazzi",
   },
   {
+    slug: "mascotte",
+    titolo: "La Mascotte",
+    tipo: "Creative Tech / Interattivo",
+    anno: "2026",
+    descrizione: "Un assistente 3D interattivo: un monitor anni '90 con anima, reattivo al mouse.",
+    interattivo: "mascotte",
+    racconto: "Un esperimento di creative technology: una mascotte-computer costruita in Three.js che reagisce al mouse, si emoziona, gioca a Pong quando la lasci sola e si arrabbia se la infastidisci. Provala qui sotto — muovi il mouse, falle il solletico, lasciala in pace un momento.",
+    commento: "› ciao. mi hai evocato tu?",
+    copertina: "/progetti/mascotte/cover.jpg",   // ← uno screenshot della mascotte
+  },
+  {
     slug: "scacchi",
     titolo: "Scacchi interattivi",
     tipo: "Web / Gioco",
@@ -85,6 +96,7 @@ function Works({ onOpenScacchi }) {
   const [aperto, setAperto] = useState(null);   // il progetto aperto nel dettaglio
 
   const apri = (p) => {
+    console.log("click su:", p.slug, p.titolo);
     if (p.giocabile) onOpenScacchi();
     else setAperto(p);
   };
