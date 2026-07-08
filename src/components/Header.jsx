@@ -1,14 +1,24 @@
 import { useLenis } from "lenis/react";
 import { useMascotte } from "../mascotte/MascotteContext";
 import styles from "./Header.module.css";
+import { useState, useEffect } from "react";
 
 function Header({ onSegreto }) {
   const lenis = useLenis();
   const { say, idle } = useMascotte();
   const vaiA = (target) => lenis?.scrollTo(target, { offset: -80 });
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    onScroll(); // controlla subito allo stato iniziale
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.logo}>
         <button
           className={styles.logoBtn}

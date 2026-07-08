@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import AudioToggle from "./components/AudioToggle";
 import { ReactLenis, useLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { gsap } from "gsap";
@@ -16,6 +15,7 @@ import ChessGame from "./components/ChessGame";
 import PixelBg from "./components/PixelBg";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Ticker from "./components/Ticker";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,15 +46,16 @@ function Sito() {
       <div className="sito">
         <Header onSegreto={apriTris} />
         <Hero start={loaded} />
+        <Ticker />
         <PixelBg>
           <Works onOpenScacchi={apriScacchi} />
         </PixelBg>
         <About />
         <Contact />
+        
         <Footer />
       </div>
 
-      <AudioToggle />
       {giocoAperto && <TicTacToe onClose={chiudiTris} />}
       {scacchiAperti && <ChessGame onClose={chiudiScacchi} />}
     </ReactLenis>

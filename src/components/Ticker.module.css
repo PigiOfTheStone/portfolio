@@ -1,0 +1,48 @@
+.ticker {
+  position: sticky;
+  top: 68px;                    /* si aggancia all' HEADER quando lo raggiungi */
+  z-index: 9;                /* sotto l'header (10), sopra il contenuto */
+  width: 100%;
+  overflow: hidden;
+  background: var(--accento);
+  padding: 7px 0;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  color: #14131a;
+  white-space: nowrap;
+}
+.track {
+  display: inline-flex;
+  align-items: center;
+  animation: scorri 40s linear infinite;   /* scorrimento continuo */
+}
+
+.voce {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 4px;
+}
+.icona { color: #14131a; }
+.pulse { animation: batti 1s ease-in-out infinite; }
+.sep { margin: 0 18px; opacity: 0.4; color: #14131a;}
+
+@keyframes scorri {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }   /* -50% perché la lista è doppia */
+}
+@keyframes batti {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.3); }
+}
+/* lo stickman cammina: gambe e braccia oscillano in opposizione */
+.icona :global(.gamba-sx), .icona :global(.braccio-dx) {
+  animation: passo 0.6s ease-in-out infinite;
+}
+.icona :global(.gamba-dx), .icona :global(.braccio-sx) {
+  animation: passo 0.6s ease-in-out infinite reverse;
+}
+@keyframes passo {
+  0%, 100% { transform: rotate(-25deg); }
+  50%      { transform: rotate(25deg); }
+}

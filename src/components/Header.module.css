@@ -6,7 +6,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px;
-  mix-blend-mode: difference;
+  background: transparent;
+  transition: background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.scrolled {
+  background: rgba(13, 12, 18, 0.85);
+  backdrop-filter: blur(10px);      /* il blocco scuro "smerigliato" quando scrolli */
+  border-bottom: 1px solid var(--bordo);
+  padding: 14px 24px;               /* si assottiglia un po': effetto "compatto" */
 }
 .logo { font-weight: 700; letter-spacing: -0.02em; color: #fff; }
 .segreto {

@@ -32,17 +32,18 @@ export default function PixelBg({ children }) {
   const celle = useMemo(() => Array.from({ length: n }, (_, i) => i), [n]);
   useGSAP(() => {
     if (!n || !griglia.current || griglia.current.children.length === 0) return;
-    // i pixel si assemblano man mano che la sezione entra, legati allo scroll
+    // i pixel si assemblano UNA VOLTA, per intero, quando la sezione entra
     gsap.from(griglia.current.children, {
       opacity: 0,
       scale: 0.3,
       ease: "power2.out",
-      stagger: { each: 0.012, from: "random" },   // ← a caso, come le scale di Hogwarts
+      duration: 0.5,
+      stagger: { each: 0.002, from: "random" },
       scrollTrigger: {
         trigger: root.current,
-        start: "top 90%",
-        end: "top 25%",
-        scrub: true,                               // legato allo scroll: sali = si smontano
+        start: "top 75%",
+        // niente scrub, niente end: parte una volta e si completa da sé
+        toggleActions: "play none none none",
       },
     });
     // parallasse: lo sfondo di pixel scorre più lento del contenuto
@@ -56,6 +57,7 @@ export default function PixelBg({ children }) {
         scrub: true,
       },
     });
+    ScrollTrigger.refresh();
   }, { scope: root, dependencies: [n] });
 
   return (
