@@ -46,7 +46,7 @@ export default function Ticker() {
 
   const voci = [
     { icona: "♥", testo: `${bpm} BPM`, live: true },
-    { icona: "♫", testo: "Ultimo brano: Bonobo — Kerala" },
+    { icona: "♫", testo: "Ultimo brano: Routines In The Night - Twenty One Pilots" },
     { icona: <Camminatore />, testo: `${passi.toLocaleString("it-IT")} passi oggi` },    { icona: "☕", testo: `Caffè n° ${caffe}` },
     { icona: "📍", testo: "Domegge di Cadore, IT" },
     { icona: "🕐", testo: ora },

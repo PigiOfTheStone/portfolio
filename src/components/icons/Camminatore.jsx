@@ -1,25 +1,19 @@
 export default function Camminatore() {
   return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
-         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      {/* testa */}
-      <circle cx="12" cy="4" r="2" />
-      {/* corpo */}
-      <line x1="12" y1="6" x2="12" y2="14" />
-      {/* gambe che si alternano (animate via CSS) */}
-      <g className="gamba-sx" style={{ transformOrigin: "12px 14px" }}>
-        <line x1="12" y1="14" x2="9" y2="20" />
-      </g>
-      <g className="gamba-dx" style={{ transformOrigin: "12px 14px" }}>
-        <line x1="12" y1="14" x2="15" y2="20" />
-      </g>
-      {/* braccia che si alternano */}
-      <g className="braccio-sx" style={{ transformOrigin: "12px 8px" }}>
-        <line x1="12" y1="8" x2="9" y2="12" />
-      </g>
-      <g className="braccio-dx" style={{ transformOrigin: "12px 8px" }}>
-        <line x1="12" y1="8" x2="15" y2="12" />
-      </g>
+    <svg viewBox="0 0 24 28" width="15" height="17" fill="none"
+         stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* testa — ferma */}
+      <circle cx="12" cy="4" r="2.5" />
+      {/* busto — fermo */}
+      <line x1="12" y1="6.5" x2="12" y2="17" />
+
+      {/* GAMBE: ruotano dall'anca (12,17) */}
+      <line className="camm-gamba-a" x1="12" y1="17" x2="12" y2="25" />
+      <line className="camm-gamba-b" x1="12" y1="17" x2="12" y2="25" />
+
+      {/* BRACCIA: ruotano dalla spalla (12,9) */}
+      <line className="camm-braccio-a" x1="12" y1="9" x2="12" y2="15" />
+      <line className="camm-braccio-b" x1="12" y1="9" x2="12" y2="15" />
     </svg>
   );
 }
