@@ -78,3 +78,7 @@
   0%, 100% { transform: rotate(-13deg); }
   50%      { transform: rotate(13deg); }
 }
+
+@media (max-width: 600px) {
+  .ticker { top: 74px; }
+}
