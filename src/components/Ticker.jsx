@@ -8,6 +8,23 @@ export default function Ticker() {
   const [caffe, setCaffe] = useState(3);
   const [batteria, setBatteria] = useState(34);
   const [ora, setOra] = useState("");
+  const [brano, setBrano] = useState(null);
+
+  // CARICA ULTIMO BRANO SPOTIFY
+  useEffect(() => {
+    const carica = async () => {
+      try {
+        const res = await fetch("/api/spotify");
+        const dati = await res.json();
+        if (dati.brano) setBrano(`${dati.brano} — ${dati.artista}`);
+      } catch {
+        // in locale la Function non esiste: resta il testo di ripiego
+      }
+    };
+    carica();
+    const id = setInterval(carica, 60000);   // ricontrolla ogni minuto
+    return () => clearInterval(id);
+  }, []);
 
   // BATTITO: oscilla dolcemente tra 72 e 76, aggiornandosi spesso
   useEffect(() => {
@@ -46,7 +63,7 @@ export default function Ticker() {
 
   const voci = [
     { icona: "♥", testo: `${bpm} BPM`, live: true },
-    { icona: "♫", testo: "Ultimo brano: Routines In The Night - Twenty One Pilots" },
+    { icona: "♫", testo: `Ultimo brano: ${brano ?? "in ascolto…"}` },
     { icona: <Camminatore />, testo: `${passi.toLocaleString("it-IT")} passi oggi` },    { icona: "☕", testo: `Caffè n° ${caffe}` },
     { icona: "📍", testo: "Domegge di Cadore, IT" },
     { icona: "🕐", testo: ora },
