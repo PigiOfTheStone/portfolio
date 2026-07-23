@@ -1,8 +1,7 @@
 import styles from "./Footer.module.css";
 
 
-const EMAIL = "pigi7dp@gmail.com";   // ← la stessa dei contatti
-
+const EMAIL = "hello@pigiofthestone.com";   
 export default function Footer() {
 
   const anno = new Date().getFullYear();   // si aggiorna da solo ogni anno
