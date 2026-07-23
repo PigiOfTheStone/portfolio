@@ -14,7 +14,11 @@
 .track {
   display: inline-flex;
   align-items: center;
-  animation: scorri 40s linear infinite;   /* scorrimento continuo */
+  animation: scorri 40s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .voce {
