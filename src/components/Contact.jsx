@@ -3,7 +3,7 @@ import styles from "./Contact.module.css";
 import Reveal from "./Reveal";
 import { useMascotte } from "../mascotte/MascotteContext";
 
-const EMAIL = "pigi7dp@gmail.com";   // ← la tua email vera
+const EMAIL = "hello@pigiofthestone.com";   // ← la tua email vera
 
 const social = [
   { nome: "Instagram", url: "https://instagram.com/pigi.of.the.stone" }
