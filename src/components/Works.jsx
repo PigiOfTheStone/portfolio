@@ -19,19 +19,19 @@ const progetti = [
   },
   {
     slug: "francobolli-domegge",
-    copertina: "/progetti/francobolli/cover.jpg",
+    copertina: "/progetti/francobolli/cover.webp",
     titolo: "Francobolli delle Contrade",
     tipo: "Illustrazione / Grafica",
     anno: "2026",
     descrizione: "Una serie di francobolli illustrati per il torneo delle contrade di Domegge di Cadore.",
     immagini: [
-      "/progetti/francobolli/01.jpg",
-      "/progetti/francobolli/02.jpg",
-      "/progetti/francobolli/03.jpg",
-      "/progetti/francobolli/04.jpg",
-      "/progetti/francobolli/05.jpg",
-      "/progetti/francobolli/06.jpg",
-      "/progetti/francobolli/07.jpg"
+      "/progetti/francobolli/01.webp",
+      "/progetti/francobolli/02.webp",
+      "/progetti/francobolli/03.webp",
+      "/progetti/francobolli/04.webp",
+      "/progetti/francobolli/05.webp",
+      "/progetti/francobolli/06.webp",
+      "/progetti/francobolli/07.webp"
     ],
     racconto: "Per il torneo delle contrade di Domegge di Cadore ho disegnato una serie di francobolli: un'illustrazione per ogni zona tipica del paese, ciascuna con il suo carattere.",
     commento: "› apro collezione_contrade — non leccarli",
@@ -39,32 +39,32 @@ const progetti = [
   },
   {
     slug: "aquilotti-volley",
-    copertina: "/progetti/aquilotti/cover.jpg",
+    copertina: "/progetti/aquilotti/cover.webp",
     titolo: "Aquilotti Volley",
     tipo: "Branding / Logo",
     anno: "2025",                              // ← l'anno
     descrizione: "Il logo della sezione pallavolo della US Aquilotti Pelos ASD.",
     immagini: [
-      "/progetti/aquilotti/01.jpg"
+      "/progetti/aquilotti/01.webp"
     ],
     racconto: "Identità visiva per Aquilotti Volley, la branca pallavolistica della US Aquilotti Pelos ASD: un segno che doveva parlare alla squadra e al paese, funzionando dalla maglia da gioco allo striscione.",
     commento: "› carico aquilotti_logo.ai — schiacciata!",
   },
   {
     slug: "unione-cadore",
-    copertina: "/progetti/unione-cadore/cover.PNG",
+    copertina: "/progetti/unione-cadore/cover.webp",
     titolo: "Unione Cadore Domegge",
     tipo: "Art Direction / Comunicazione",
     anno: "in corso",                          // ← la natura continuativa si dichiara qui
     descrizione: "Direzione artistica e comunicazione per la squadra di calcio locale.",
     immagini: [
-      "/progetti/unione-cadore/01.PNG",
-      "/progetti/unione-cadore/02.PNG",
-      "/progetti/unione-cadore/03.PNG",
-      "/progetti/unione-cadore/04.PNG",
-      "/progetti/unione-cadore/05.PNG",
-      "/progetti/unione-cadore/06.PNG",
-      "/progetti/unione-cadore/07.PNG",
+      "/progetti/unione-cadore/01.webp",
+      "/progetti/unione-cadore/02.webp",
+      "/progetti/unione-cadore/03.webp",
+      "/progetti/unione-cadore/04.webp",
+      "/progetti/unione-cadore/05.webp",
+      "/progetti/unione-cadore/06.webp",
+      "/progetti/unione-cadore/07.webp",
     ],
     racconto: "Curo la direzione artistica e la comunicazione dell'Unione Cadore Domegge: un linguaggio visivo coerente per tutto ciò che la squadra racconta, dalle grafiche delle partite ai social.",
     ruoli: ["Art direction", "Comunicazione", "Grafica", "Social"],
@@ -79,7 +79,7 @@ const progetti = [
     interattivo: "mascotte",
     racconto: "Un esperimento di creative technology: una mascotte-computer costruita in Three.js che reagisce al mouse, si emoziona, gioca a Pong quando la lasci sola e si arrabbia se la infastidisci. Provala qui sotto — muovi il mouse, falle il solletico, lasciala in pace un momento.",
     commento: "› ciao. mi hai evocato tu?",
-    copertina: "/progetti/mascotte/cover.jpg",   // ← uno screenshot della mascotte
+    copertina: "/progetti/mascotte/cover.webp",   // ← uno screenshot della mascotte
   },
   {
     slug: "scacchi",
