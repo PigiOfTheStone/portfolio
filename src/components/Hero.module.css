@@ -40,3 +40,48 @@
   z-index: 0;
   will-change: transform;
 }
+
+.sfondoMobile {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, #1d1b28 0%, transparent 60%),
+    var(--sfondo);
+}
+
+/* qualche pixel arancione che compare e svanisce, sparso */
+.sfondoMobile::before,
+.sfondoMobile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: pixelBalena 8s ease-in-out infinite;
+}
+
+.sfondoMobile::before {
+  background-image:
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento));
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: 20% 30%, 70% 20%, 40% 70%, 85% 60%, 60% 85%;
+}
+.sfondoMobile::after {
+  background-image:
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento)),
+    linear-gradient(var(--accento), var(--accento));
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: 30% 50%, 80% 40%, 15% 75%, 55% 25%;
+  animation-delay: 4s;
+}
+@keyframes pixelBalena {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 0.5; }
+}

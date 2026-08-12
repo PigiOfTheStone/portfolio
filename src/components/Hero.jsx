@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./Hero.module.css";
@@ -12,6 +12,14 @@ function Hero({ start }) {
   const [rullato, setRullato] = useState(false);
   const griglia = useRef(null);
   const tamburo = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 700);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useGSAP(() => {
     if (!start) return;
@@ -60,8 +68,8 @@ function Hero({ start }) {
   return (
     <section ref={root} className={styles.hero}>
       <div ref={griglia} className={styles.grigliaWrap}>
-        <GridHero />
-       </div> 
+        {isMobile ? <div className={styles.sfondoMobile} /> : <GridHero />}
+      </div>
       <h1 ref={titolo} className={styles.titolo}>
         Ciao, sono un <span ref={tamburo} className={styles.tamburo} aria-hidden="true">🥁</span><br />
         <span ref={reveal} className={styles.accento}>creative designer</span>
