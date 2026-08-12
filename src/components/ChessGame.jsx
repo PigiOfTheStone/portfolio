@@ -29,9 +29,27 @@ function ChessGame({ onClose }) {
 
   function rispostaNera() {
     if (game.current.isGameOver()) return;
-    const mosse = game.current.moves();
+    const mosse = game.current.moves({ verbose: true });
     if (mosse.length === 0) return;
-    game.current.move(mosse[Math.floor(Math.random() * mosse.length)]); // mossa a caso
+
+    // valore dei pezzi
+    const valore = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
+
+    // punteggio per ogni mossa: cattura = valore del pezzo mangiato
+    let migliore = mosse[0];
+    let migliorPunteggio = -1;
+    for (const m of mosse) {
+      let punteggio = m.captured ? valore[m.captured] : 0;
+      // piccolo bonus per lo scacco, piccola casualità per non essere prevedibile
+      if (m.san.includes("+")) punteggio += 0.5;
+      punteggio += Math.random() * 0.3;
+      if (punteggio > migliorPunteggio) {
+        migliorPunteggio = punteggio;
+        migliore = m;
+      }
+    }
+
+    game.current.move(migliore);
     aggiorna();
   }
 
@@ -79,7 +97,7 @@ function ChessGame({ onClose }) {
   return (
     <div className={styles.overlay}>
       <div className={styles.modale}>
-        <button className={styles.chiudi} onClick={onClose}>chiudi ✕</button>
+        <button className={styles.chiudi} onClick={onClose} aria-label="Chiudi">✕</button>
         <p className={styles.titolo}>Scacchi</p>
         <p className={styles.stato}>{stato}</p>
 

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, use } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ProjectDetail.module.css";
 import Scene3D from "./Scene3D";
@@ -7,6 +7,13 @@ export default function ProjectDetail({ progetto, onClose }) {
   const rulloRef = useRef(null);
 
   const [indice, setIndice] = useState(0);
+
+  const [inChiusura, setInChiusura] = useState(false);
+
+  const chiudiConAnimazione = () => {
+    setInChiusura(true);
+    setTimeout(onClose, 300);   // aspetta che l'animazione finisca, poi smonta
+  };
 
   const imgs = progetto.immagini || [];
   const prev = () => setIndice((i) => (i - 1 + imgs.length) % imgs.length);
@@ -61,9 +68,9 @@ export default function ProjectDetail({ progetto, onClose }) {
   };
 
   return createPortal(
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.pannello} onClick={(e) => e.stopPropagation()} data-lenis-prevent>
-        <button className={styles.chiudi} onClick={onClose} aria-label="Chiudi">✕</button>
+    <div className={`${styles.overlay} ${inChiusura ? styles.chiuso : ""}`} onClick={chiudiConAnimazione}>
+      <div className={`${styles.pannello} ${inChiusura ? styles.pannelloChiuso : ""}`} onClick={(e) => e.stopPropagation()} data-lenis-prevent>
+        <button className={styles.chiudi} onClick={chiudiConAnimazione} aria-label="Chiudi">✕</button>
 
         <p className={styles.tipo}>{progetto.tipo}{progetto.anno ? ` — ${progetto.anno}` : ""}</p>
         <h2 className={styles.titolo}>{progetto.titolo}</h2>

@@ -5,6 +5,10 @@
   display: flex; align-items: center; justify-content: center;
   padding: 24px;
 }
+
+.titolo { text-align: center; }
+.stato { text-align: center; }
+
 .modale {
   background: var(--sfondo);
   border: 1px solid var(--bordo);
@@ -41,8 +45,17 @@
   width: 26%; height: 26%; border-radius: 50%;
   background: rgba(255, 92, 56, 0.7);
 }
-.bianco { color: #faf8f2; text-shadow: 0 1px 2px rgba(0,0,0,0.45); }
-.nero   { color: #16151c; text-shadow: 0 1px 1px rgba(255,255,255,0.2); }
+.bianco {
+  color: #f4f2ec;
+  -webkit-text-fill-color: #f4f2ec;   /* forza il colore anche su Safari */
+  text-shadow: 0 0 1px #000, 0 1px 2px rgba(0,0,0,0.4);  /* stacca il bianco dallo sfondo chiaro */
+  font-variant-emoji: text;            /* chiede la versione testo, non emoji */
+}
+.nero {
+  color: #1a1a1a;
+  -webkit-text-fill-color: #1a1a1a;
+  font-variant-emoji: text;
+}
 
 .ricomincia {
   background: var(--accento); color: #14131a; border: none;

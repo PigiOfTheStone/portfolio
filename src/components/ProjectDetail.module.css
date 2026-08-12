@@ -9,6 +9,7 @@
   justify-content: center;
   padding: 24px;
   overflow-y: auto;              /* se il pannello è più alto dello schermo, si scorre */
+  animation: sfondoIn 0.3s ease forwards;
 }
 .pannello {
   background: var(--sfondo);
@@ -20,6 +21,8 @@
 
   max-height: 90vh;        /* non più alto del 90% dello schermo */
   overflow-y: auto;        /* se il contenuto supera, scorre dentro */
+
+  animation: pannelloIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
 }
 .chiudi {
@@ -146,4 +149,28 @@
   border-radius: 10px;
   overflow: hidden;
   background: radial-gradient(ellipse at center, #1a1822 0%, #0d0c12 100%);
+}
+
+/* ENTRATA */
+@keyframes sfondoIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pannelloIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* USCITA */
+.chiuso {
+  animation: sfondoOut 0.3s ease forwards;
+}
+.pannelloChiuso {
+  animation: pannelloOut 0.3s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+@keyframes sfondoOut {
+  to { opacity: 0; }
+}
+@keyframes pannelloOut {
+  to { opacity: 0; transform: translateY(24px) scale(0.98); }
 }
