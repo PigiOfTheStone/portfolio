@@ -21,9 +21,9 @@ export default function Ticker() {
         // in locale la Function non esiste: resta il testo di ripiego
       }
     };
-    carica();
-    const id = setInterval(carica, 60000);   // ricontrolla ogni minuto
-    return () => clearInterval(id);
+    const primo = setTimeout(carica, 2500);   // parte dopo che la pagina è pronta
+    const id = setInterval(carica, 60000);
+    return () => { clearTimeout(primo); clearInterval(id); };
   }, []);
 
   // BATTITO: oscilla dolcemente tra 72 e 76, aggiornandosi spesso
