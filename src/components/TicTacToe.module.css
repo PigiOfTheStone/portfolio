@@ -24,7 +24,7 @@
   color: var(--tenue); font: inherit; cursor: pointer;
 }
 .chiudi:hover { color: var(--testo); }
-.titolo { font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+.titolo { font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
 .stato { color: var(--tenue); margin-bottom: 20px; font-size: 0.95rem; }
 .griglia {
   display: grid;
@@ -38,7 +38,7 @@
   background: #1d1b24;
   border: 1px solid var(--bordo);
   border-radius: 10px;
-  font-size: 2rem; font-weight: 700;
+  font-size: 2rem; font-weight: 600;
   color: var(--testo); cursor: pointer;
   transition: background 0.15s;
 }

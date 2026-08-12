@@ -17,13 +17,21 @@ export default function Ticker() {
         const res = await fetch("/api/spotify");
         const dati = await res.json();
         if (dati.brano) setBrano(`${dati.brano} — ${dati.artista}`);
-      } catch {
-        // in locale la Function non esiste: resta il testo di ripiego
-      }
+      } catch {}
     };
-    const primo = setTimeout(carica, 2500);   // parte dopo che la pagina è pronta
-    const id = setInterval(carica, 60000);
-    return () => { clearTimeout(primo); clearInterval(id); };
+
+    const avvia = () => {
+      carica();
+      return setInterval(carica, 60000);
+    };
+
+    let id;
+    if (document.readyState === "complete") {
+      id = avvia();
+    } else {
+      window.addEventListener("load", () => { id = avvia(); }, { once: true });
+    }
+    return () => clearInterval(id);
   }, []);
 
   // BATTITO: oscilla dolcemente tra 72 e 76, aggiornandosi spesso
