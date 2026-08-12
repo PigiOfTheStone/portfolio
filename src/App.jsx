@@ -10,8 +10,9 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Works from "./components/Works";
 import About from "./components/About";
-import TicTacToe from "./components/TicTacToe";
-import ChessGame from "./components/ChessGame";
+import { lazy, Suspense } from "react";
+const TicTacToe = lazy(() => import("./components/TicTacToe"));
+const ChessGame = lazy(() => import("./components/ChessGame"));
 import PixelBg from "./components/PixelBg";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -86,8 +87,10 @@ function Sito() {
         <Footer />
       </div>
 
-      {giocoAperto && <TicTacToe onClose={chiudiTris} />}
-      {scacchiAperti && <ChessGame onClose={chiudiScacchi} />}
+      <Suspense fallback={null}>
+        {giocoAperto && <TicTacToe onClose={chiudiTris} />}
+        {scacchiAperti && <ChessGame onClose={chiudiScacchi} />}
+      </Suspense>
     </ReactLenis>
   );
 }
