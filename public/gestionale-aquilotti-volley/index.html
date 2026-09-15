@@ -33,13 +33,41 @@
   }
   .pallino { display: inline-block; width: 10px; height: 10px; border-radius: 5px; margin-right: 6px; }
   .avviso { color: #616161; font-size: 12px; margin-top: 30px; }
+
+  /* Da telefono le tabelle sono troppo strette per stare su una riga: ogni riga
+     diventa una piccola scheda con etichetta + valore, una sotto l'altra,
+     invece di colonne compresse e illeggibili. */
+  @media (max-width: 640px) {
+    body { padding: 16px; }
+    h1 { font-size: 19px; }
+    h2 { font-size: 15px; margin: 22px 0 10px 0; }
+    .scheda { min-width: 128px; padding: 12px 14px; }
+    .scheda-valore { font-size: 18px; }
+
+    table { border-radius: 0; background: transparent; }
+    thead { display: none; }
+    tbody { display: block; }
+    tr {
+      display: block; background: #FFFFFF; border: 1px solid #EEEEEE;
+      border-radius: 12px; margin-bottom: 10px; overflow: hidden;
+    }
+    td {
+      display: flex; justify-content: space-between; align-items: center; gap: 14px;
+      text-align: right; border-bottom: 1px solid #F5F5F5; padding: 9px 14px;
+    }
+    td::before {
+      content: attr(data-label); font-weight: bold; font-size: 11px; color: #616161;
+      text-align: left; flex-shrink: 0;
+    }
+    td:last-child { border-bottom: none; }
+  }
 </style>
 </head>
 <body>
 <div class="contenitore">
   <h1>US Aquilotti Pelos ASD — Vista direttivo</h1>
   <div class="sottotitolo">
-    Aggiornato il 15/09/2026 alle 18:43. Vista di sola consultazione: per modificare i dati usa il gestionale sul computer.
+    Aggiornato il 15/09/2026 alle 19:07. Vista di sola consultazione: per modificare i dati usa il gestionale sul computer.
   </div>
 
   <div class="schede"><div class="scheda"><div class="scheda-valore" style="color:#ee8717">20</div><div class="scheda-etichetta">atlete totali</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">3</div><div class="scheda-etichetta">squadre</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">10</div><div class="scheda-etichetta">minorenni</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">4</div><div class="scheda-etichetta">certificati da controllare</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">20</div><div class="scheda-etichetta">quote da sollecitare</div></div><div class="scheda"><div class="scheda-valore" style="color:#2E7D32">0€ di 6150€</div><div class="scheda-etichetta">incassato</div></div></div>
@@ -50,144 +78,144 @@
         <thead><tr><th>Nome</th><th>Età</th><th>Comune</th><th>Telefono</th><th>Certificato medico</th></tr></thead>
         <tbody>
         <tr>
-            <td><strong>Claudia Rafreisy Arredondo Mejia</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>13 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>161781829399484</td>
-            <td style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
+            <td data-label="Nome"><strong>Claudia Rafreisy Arredondo Mejia</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">13 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">161781829399484</td>
+            <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
         <tr>
-            <td><strong>Irene Da Prà</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>18 anni</td>
-            <td>Lozzo di Cadore</td>
-            <td>3339999298</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
+            <td data-label="Nome"><strong>Irene Da Prà</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">18 anni</td>
+            <td data-label="Comune">Lozzo di Cadore</td>
+            <td data-label="Telefono">3339999298</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
         </tr>
         <tr>
-            <td><strong>Giorgia De Polo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>24 anni</td>
-            <td>Calalzo di Cadore</td>
-            <td>3282689208</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 119 giorni</td>
+            <td data-label="Nome"><strong>Giorgia De Polo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">24 anni</td>
+            <td data-label="Comune">Calalzo di Cadore</td>
+            <td data-label="Telefono">3282689208</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 119 giorni</td>
         </tr>
         <tr>
-            <td><strong>Diamante De Silvestro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>13 anni</td>
-            <td>Domegge di Cadore</td>
-            <td>3890265514</td>
-            <td style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
+            <td data-label="Nome"><strong>Diamante De Silvestro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">13 anni</td>
+            <td data-label="Comune">Domegge di Cadore</td>
+            <td data-label="Telefono">3890265514</td>
+            <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
         <tr>
-            <td><strong>Giada De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>29 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>3924182460</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
+            <td data-label="Nome"><strong>Giada De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">29 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">3924182460</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
         </tr>
         <tr>
-            <td><strong>Ginevra De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>23 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>3319897513</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 165 giorni</td>
+            <td data-label="Nome"><strong>Ginevra De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">23 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">3319897513</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 165 giorni</td>
         </tr>
         <tr>
-            <td><strong>Greta De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>27 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>3423556685</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
+            <td data-label="Nome"><strong>Greta De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">27 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">3423556685</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
         </tr>
         <tr>
-            <td><strong>Natasha Domini</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>14 anni</td>
-            <td>Domegge di Cadore</td>
-            <td>3286888948</td>
-            <td style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
+            <td data-label="Nome"><strong>Natasha Domini</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">14 anni</td>
+            <td data-label="Comune">Domegge di Cadore</td>
+            <td data-label="Telefono">3286888948</td>
+            <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
         <tr>
-            <td><strong>Camilla Fabbro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>13 anni</td>
-            <td>Lorenzago di Cadore</td>
-            <td>3714102750</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 255 giorni</td>
+            <td data-label="Nome"><strong>Camilla Fabbro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">13 anni</td>
+            <td data-label="Comune">Lorenzago di Cadore</td>
+            <td data-label="Telefono">3714102750</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 255 giorni</td>
         </tr>
         <tr>
-            <td><strong>Alessia Larese Prata</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>12 anni</td>
-            <td>Lorenzago di Cadore</td>
-            <td>3891368864</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 170 giorni</td>
+            <td data-label="Nome"><strong>Alessia Larese Prata</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">12 anni</td>
+            <td data-label="Comune">Lorenzago di Cadore</td>
+            <td data-label="Telefono">3891368864</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 170 giorni</td>
         </tr>
         <tr>
-            <td><strong>Alessia Lauro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>12 anni</td>
-            <td>Domegge di Cadore</td>
-            <td>3208891777</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 164 giorni</td>
+            <td data-label="Nome"><strong>Alessia Lauro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">12 anni</td>
+            <td data-label="Comune">Domegge di Cadore</td>
+            <td data-label="Telefono">3208891777</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 164 giorni</td>
         </tr>
         <tr>
-            <td><strong>Aurora Lorusso</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>20 anni</td>
-            <td>Lozzo di Cadore</td>
-            <td>3791215457</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 137 giorni</td>
+            <td data-label="Nome"><strong>Aurora Lorusso</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">20 anni</td>
+            <td data-label="Comune">Lozzo di Cadore</td>
+            <td data-label="Telefono">3791215457</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 137 giorni</td>
         </tr>
         <tr>
-            <td><strong>Mia Luca</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>14 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>3471054805</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 199 giorni</td>
+            <td data-label="Nome"><strong>Mia Luca</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">14 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">3471054805</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 199 giorni</td>
         </tr>
         <tr>
-            <td><strong>Agnese Nicolao</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>24 anni</td>
-            <td>Vigo di Cadore</td>
-            <td>3505037840</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 35 giorni</td>
+            <td data-label="Nome"><strong>Agnese Nicolao</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">24 anni</td>
+            <td data-label="Comune">Vigo di Cadore</td>
+            <td data-label="Telefono">3505037840</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 35 giorni</td>
         </tr>
         <tr>
-            <td><strong>Vanessa Pomarè</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>11 anni</td>
-            <td>Santo Stefano di Cadore</td>
-            <td>3921143768</td>
-            <td style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
+            <td data-label="Nome"><strong>Vanessa Pomarè</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">11 anni</td>
+            <td data-label="Comune">Santo Stefano di Cadore</td>
+            <td data-label="Telefono">3921143768</td>
+            <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
         <tr>
-            <td><strong>Silvia Silipo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>45 anni</td>
-            <td>Lorenzago di Cadore</td>
-            <td>3494693670</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
+            <td data-label="Nome"><strong>Silvia Silipo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">45 anni</td>
+            <td data-label="Comune">Lorenzago di Cadore</td>
+            <td data-label="Telefono">3494693670</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
         </tr>
         <tr>
-            <td><strong>Evelin Traina</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>24 anni</td>
-            <td>Domegge di Cadore</td>
-            <td>3314671894</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 31 giorni</td>
+            <td data-label="Nome"><strong>Evelin Traina</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">24 anni</td>
+            <td data-label="Comune">Domegge di Cadore</td>
+            <td data-label="Telefono">3314671894</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 31 giorni</td>
         </tr>
         <tr>
-            <td><strong>Sonia Tremonti</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
-            <td>36 anni</td>
-            <td>Lorenzago di Cadore</td>
-            <td>3470130827</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 116 giorni</td>
+            <td data-label="Nome"><strong>Sonia Tremonti</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
+            <td data-label="Età">36 anni</td>
+            <td data-label="Comune">Lorenzago di Cadore</td>
+            <td data-label="Telefono">3470130827</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 116 giorni</td>
         </tr>
         <tr>
-            <td><strong>Susan Vecellio Del Monego</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>12 anni</td>
-            <td>Lorenzago di Cadore</td>
-            <td>1111111111111111111</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 227 giorni</td>
+            <td data-label="Nome"><strong>Susan Vecellio Del Monego</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">12 anni</td>
+            <td data-label="Comune">Lorenzago di Cadore</td>
+            <td data-label="Telefono">1111111111111111111</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 227 giorni</td>
         </tr>
         <tr>
-            <td><strong>Diana Zorzetto</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
-            <td>13 anni</td>
-            <td>Domegge di Cadore</td>
-            <td>3274746389</td>
-            <td style="color:#2E7D32; font-weight:bold">Il certificato scade tra 191 giorni</td>
+            <td data-label="Nome"><strong>Diana Zorzetto</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
+            <td data-label="Età">13 anni</td>
+            <td data-label="Comune">Domegge di Cadore</td>
+            <td data-label="Telefono">3274746389</td>
+            <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 191 giorni</td>
         </tr></tbody>
     </table>
 
@@ -197,130 +225,130 @@
         <thead><tr><th>Nome</th><th>Quota dovuta</th><th>Pagato</th><th>Stato</th></tr></thead>
         <tbody>
         <tr>
-            <td><strong>Irene Da Prà</strong></td>
-            <td>350€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
+            <td data-label="Nome"><strong>Irene Da Prà</strong></td>
+            <td data-label="Quota dovuta">350€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
         </tr>
         <tr>
-            <td><strong>Giorgia De Polo</strong></td>
-            <td>350€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
+            <td data-label="Nome"><strong>Giorgia De Polo</strong></td>
+            <td data-label="Quota dovuta">350€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
         </tr>
         <tr>
-            <td><strong>Giada De Villa Tondo</strong></td>
-            <td>350€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
+            <td data-label="Nome"><strong>Giada De Villa Tondo</strong></td>
+            <td data-label="Quota dovuta">350€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 350€</td>
         </tr>
         <tr>
-            <td><strong>Claudia Rafreisy Arredondo Mejia</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Claudia Rafreisy Arredondo Mejia</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Diamante De Silvestro</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Diamante De Silvestro</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Ginevra De Villa Tondo</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Ginevra De Villa Tondo</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Greta De Villa Tondo</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Greta De Villa Tondo</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Natasha Domini</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Natasha Domini</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Camilla Fabbro</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Camilla Fabbro</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Alessia Larese Prata</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Alessia Larese Prata</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Alessia Lauro</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Alessia Lauro</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Aurora Lorusso</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Aurora Lorusso</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Mia Luca</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Mia Luca</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Agnese Nicolao</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Agnese Nicolao</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Vanessa Pomarè</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Vanessa Pomarè</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Silvia Silipo</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Silvia Silipo</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Evelin Traina</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Evelin Traina</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Sonia Tremonti</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Sonia Tremonti</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Susan Vecellio Del Monego</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Susan Vecellio Del Monego</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr>
         <tr>
-            <td><strong>Diana Zorzetto</strong></td>
-            <td>300€</td>
-            <td>0€</td>
-            <td style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
+            <td data-label="Nome"><strong>Diana Zorzetto</strong></td>
+            <td data-label="Quota dovuta">300€</td>
+            <td data-label="Pagato">0€</td>
+            <td data-label="Stato" style="color:Colors.RED_600; font-weight:bold">Non pagato — quota 300€</td>
         </tr></tbody>
     </table>
 
 
   <h2>Atlete per squadra</h2>
-  <table><thead><tr><th>Squadra</th><th>Atlete</th></tr></thead><tbody><tr><td><span class="pallino" style="background:#AD1457"></span> Minivolley S3</td><td>0</td></tr><tr><td><span class="pallino" style="background:#6A1B9A"></span> Terza Divisione</td><td>10</td></tr><tr><td><span class="pallino" style="background:#2E7D32"></span> Under 15</td><td>10</td></tr></tbody></table>
+  None
 
   <div class="avviso">
     Per motivi di privacy questa pagina non mostra codice fiscale e indirizzo completo di atlete e genitori.
