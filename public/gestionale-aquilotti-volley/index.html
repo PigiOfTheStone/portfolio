@@ -61,7 +61,8 @@
     }
     td:last-child { border-bottom: none; }
   }
-    .filtri { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+
+  .filtri { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
   .filtro-squadra {
     border: 1.5px solid; border-radius: 20px; padding: 6px 14px; font-size: 12px;
     font-weight: bold; font-family: inherit; background: transparent; cursor: pointer;
@@ -72,30 +73,8 @@
 <div class="contenitore">
   <h1>US Aquilotti Pelos ASD — Vista direttivo</h1>
   <div class="sottotitolo">
-    Aggiornato il 15/09/2026 alle 19:30. Vista di sola consultazione: per modificare i dati usa il gestionale sul computer.
+    Aggiornato il 15/09/2026 alle 19:40. Vista di sola consultazione: per modificare i dati usa il gestionale sul computer.
   </div>
-<script>
-  // Filtro per squadra sull'elenco atlete: nessuna ricarica della pagina,
-  // solo mostra/nasconde le righe della tabella in base al pulsante cliccato.
-  (function () {
-    var pulsanti = document.querySelectorAll(".filtro-squadra");
-    var righe = document.querySelectorAll("#tabella-anagrafica tbody tr");
-    pulsanti.forEach(function (pulsante) {
-      pulsante.addEventListener("click", function () {
-        pulsanti.forEach(function (p) {
-          var colore = p.getAttribute("data-colore");
-          var attivo = p === pulsante;
-          p.style.background = attivo ? colore : "transparent";
-          p.style.color = attivo ? "#FFFFFF" : colore;
-        });
-        var filtro = pulsante.getAttribute("data-filtro");
-        righe.forEach(function (riga) {
-          riga.style.display = (!filtro || riga.getAttribute("data-squadra") === filtro) ? "" : "none";
-        });
-      });
-    });
-  })();
-</script>
 
   <div class="schede"><div class="scheda"><div class="scheda-valore" style="color:#ee8717">20</div><div class="scheda-etichetta">atlete totali</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">3</div><div class="scheda-etichetta">squadre</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">10</div><div class="scheda-etichetta">minorenni</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">4</div><div class="scheda-etichetta">certificati da controllare</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">20</div><div class="scheda-etichetta">quote da sollecitare</div></div><div class="scheda"><div class="scheda-valore" style="color:#2E7D32">0€ di 6150€</div><div class="scheda-etichetta">incassato</div></div></div>
 
@@ -374,13 +353,34 @@
         </tr></tbody>
     </table>
 
-
   <h2>Atlete per squadra</h2>
-  None
+  <table><thead><tr><th>Squadra</th><th>Atlete</th></tr></thead><tbody><tr><td data-label="Squadra"><span class="pallino" style="background:#AD1457"></span> Minivolley S3</td><td data-label="Atlete">0</td></tr><tr><td data-label="Squadra"><span class="pallino" style="background:#6A1B9A"></span> Terza Divisione</td><td data-label="Atlete">10</td></tr><tr><td data-label="Squadra"><span class="pallino" style="background:#2E7D32"></span> Under 15</td><td data-label="Atlete">10</td></tr></tbody></table>
 
   <div class="avviso">
     Per motivi di privacy questa pagina non mostra codice fiscale e indirizzo completo di atlete e genitori.
   </div>
 </div>
+<script>
+  // Filtro per squadra sull'elenco atlete: nessuna ricarica della pagina,
+  // solo mostra/nasconde le righe della tabella in base al pulsante cliccato.
+  (function () {
+    var pulsanti = document.querySelectorAll(".filtro-squadra");
+    var righe = document.querySelectorAll("#tabella-anagrafica tbody tr");
+    pulsanti.forEach(function (pulsante) {
+      pulsante.addEventListener("click", function () {
+        pulsanti.forEach(function (p) {
+          var colore = p.getAttribute("data-colore");
+          var attivo = p === pulsante;
+          p.style.background = attivo ? colore : "transparent";
+          p.style.color = attivo ? "#FFFFFF" : colore;
+        });
+        var filtro = pulsante.getAttribute("data-filtro");
+        righe.forEach(function (riga) {
+          riga.style.display = (!filtro || riga.getAttribute("data-squadra") === filtro) ? "" : "none";
+        });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
