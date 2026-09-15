@@ -61,6 +61,11 @@
     }
     td:last-child { border-bottom: none; }
   }
+    .filtri { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .filtro-squadra {
+    border: 1.5px solid; border-radius: 20px; padding: 6px 14px; font-size: 12px;
+    font-weight: bold; font-family: inherit; background: transparent; cursor: pointer;
+  }
 </style>
 </head>
 <body>
@@ -69,148 +74,171 @@
   <div class="sottotitolo">
     Aggiornato il 15/09/2026 alle 19:30. Vista di sola consultazione: per modificare i dati usa il gestionale sul computer.
   </div>
+<script>
+  // Filtro per squadra sull'elenco atlete: nessuna ricarica della pagina,
+  // solo mostra/nasconde le righe della tabella in base al pulsante cliccato.
+  (function () {
+    var pulsanti = document.querySelectorAll(".filtro-squadra");
+    var righe = document.querySelectorAll("#tabella-anagrafica tbody tr");
+    pulsanti.forEach(function (pulsante) {
+      pulsante.addEventListener("click", function () {
+        pulsanti.forEach(function (p) {
+          var colore = p.getAttribute("data-colore");
+          var attivo = p === pulsante;
+          p.style.background = attivo ? colore : "transparent";
+          p.style.color = attivo ? "#FFFFFF" : colore;
+        });
+        var filtro = pulsante.getAttribute("data-filtro");
+        righe.forEach(function (riga) {
+          riga.style.display = (!filtro || riga.getAttribute("data-squadra") === filtro) ? "" : "none";
+        });
+      });
+    });
+  })();
+</script>
 
   <div class="schede"><div class="scheda"><div class="scheda-valore" style="color:#ee8717">20</div><div class="scheda-etichetta">atlete totali</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">3</div><div class="scheda-etichetta">squadre</div></div><div class="scheda"><div class="scheda-valore" style="color:#ee8717">10</div><div class="scheda-etichetta">minorenni</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">4</div><div class="scheda-etichetta">certificati da controllare</div></div><div class="scheda"><div class="scheda-valore" style="color:#C62828">20</div><div class="scheda-etichetta">quote da sollecitare</div></div><div class="scheda"><div class="scheda-valore" style="color:#2E7D32">0€ di 6150€</div><div class="scheda-etichetta">incassato</div></div></div>
 
   <h2>Anagrafica atlete</h2>
   
-    <table>
+    <div class="filtri"><button type="button" class="filtro-squadra" data-filtro="" data-colore="#0A0A0A" style="background:#0A0A0A; color:#FFFFFF; border-color:#0A0A0A">Tutte</button><button type="button" class="filtro-squadra" data-filtro="3" data-colore="#AD1457" style="color:#AD1457; border-color:#AD1457">Minivolley S3</button><button type="button" class="filtro-squadra" data-filtro="1" data-colore="#6A1B9A" style="color:#6A1B9A; border-color:#6A1B9A">Terza Divisione</button><button type="button" class="filtro-squadra" data-filtro="2" data-colore="#2E7D32" style="color:#2E7D32; border-color:#2E7D32">Under 15</button></div>
+    <table id="tabella-anagrafica">
         <thead><tr><th>Nome</th><th>Età</th><th>Comune</th><th>Telefono</th><th>Certificato medico</th></tr></thead>
         <tbody>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Claudia Rafreisy Arredondo Mejia</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">13 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">161781829399484</td>
             <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Irene Da Prà</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">18 anni</td>
             <td data-label="Comune">Lozzo di Cadore</td>
             <td data-label="Telefono">3339999298</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Giorgia De Polo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">24 anni</td>
             <td data-label="Comune">Calalzo di Cadore</td>
             <td data-label="Telefono">3282689208</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 119 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Diamante De Silvestro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">13 anni</td>
             <td data-label="Comune">Domegge di Cadore</td>
             <td data-label="Telefono">3890265514</td>
             <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Giada De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">29 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">3924182460</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Ginevra De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">23 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">3319897513</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 165 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Greta De Villa Tondo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">27 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">3423556685</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 65 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Natasha Domini</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">14 anni</td>
             <td data-label="Comune">Domegge di Cadore</td>
             <td data-label="Telefono">3286888948</td>
             <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Camilla Fabbro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">13 anni</td>
             <td data-label="Comune">Lorenzago di Cadore</td>
             <td data-label="Telefono">3714102750</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 255 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Alessia Larese Prata</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">12 anni</td>
             <td data-label="Comune">Lorenzago di Cadore</td>
             <td data-label="Telefono">3891368864</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 170 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Alessia Lauro</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">12 anni</td>
             <td data-label="Comune">Domegge di Cadore</td>
             <td data-label="Telefono">3208891777</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 164 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Aurora Lorusso</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">20 anni</td>
             <td data-label="Comune">Lozzo di Cadore</td>
             <td data-label="Telefono">3791215457</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 137 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Mia Luca</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">14 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">3471054805</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 199 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Agnese Nicolao</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">24 anni</td>
             <td data-label="Comune">Vigo di Cadore</td>
             <td data-label="Telefono">3505037840</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 35 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Vanessa Pomarè</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">11 anni</td>
             <td data-label="Comune">Santo Stefano di Cadore</td>
             <td data-label="Telefono">3921143768</td>
             <td data-label="Certificato medico" style="color:#616161; font-weight:bold">Nessuna visita medica registrata</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Silvia Silipo</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">45 anni</td>
             <td data-label="Comune">Lorenzago di Cadore</td>
             <td data-label="Telefono">3494693670</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 51 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Evelin Traina</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">24 anni</td>
             <td data-label="Comune">Domegge di Cadore</td>
             <td data-label="Telefono">3314671894</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 31 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="1">
             <td data-label="Nome"><strong>Sonia Tremonti</strong> <span class="badge" style="background:#6A1B9A">Terza Divisione</span> </td>
             <td data-label="Età">36 anni</td>
             <td data-label="Comune">Lorenzago di Cadore</td>
             <td data-label="Telefono">3470130827</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 116 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Susan Vecellio Del Monego</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">12 anni</td>
             <td data-label="Comune">Lorenzago di Cadore</td>
             <td data-label="Telefono">1111111111111111111</td>
             <td data-label="Certificato medico" style="color:#2E7D32; font-weight:bold">Il certificato scade tra 227 giorni</td>
         </tr>
-        <tr>
+        <tr data-squadra="2">
             <td data-label="Nome"><strong>Diana Zorzetto</strong> <span class="badge" style="background:#2E7D32">Under 15</span> <span class="badge" style="background:#ee8717">MINORENNE</span></td>
             <td data-label="Età">13 anni</td>
             <td data-label="Comune">Domegge di Cadore</td>
